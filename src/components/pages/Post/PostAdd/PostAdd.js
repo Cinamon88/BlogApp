@@ -1,4 +1,3 @@
-// import PageTitle from "../PageTitle/PageTitle";
 
 const PostAdd = () => {
     return (

@@ -4,8 +4,8 @@ import { Button, Row, Col } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
  
 const SinglePost = () => {
-    const { id } = useParams();
-    const postData = useSelector((state) => getPostById(state, id));
+    const { postId } = useParams();
+    const postData = useSelector((state) => getPostById(state, postId));
 
     return (
         <>

@@ -1,9 +1,18 @@
+import AddPostForm from "../../../features/AddPostForm";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../../../redux/postsRedux";
 
 const PostAdd = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleSubmit = post => {
+        dispatch(addPost(post));
+        navigate('/');
+    };
+    
     return (
-        <div>
-            <h1>PostAdd</h1>
-        </div>
+        <AddPostForm action={handleSubmit} actionText="Add post" />
     );
 };
 

@@ -9,15 +9,17 @@ const PostContainer = () => {
     
     <div className="d-flex justify-content-between flex-wrap mt-5">
       {allPosts.map((post, index) => (
-        <PostCard
-          key={index}
-          id={post.id}
-          title={post.title}
-          author={post.author}
-          date={post.publishedDate}
-          description={post.shortDescription}
-          />
-        ))}
+        <div key={index}>
+          <PostCard
+            key={index}
+            id={post.id}
+            title={post.title}
+            author={post.author}
+            date={post.publishedDate}
+            description={post.shortDescription}
+            />
+        </div>
+      ))}
     </div>
     
   );

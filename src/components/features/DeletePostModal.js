@@ -1,6 +1,6 @@
 import { Button, Modal } from "react-bootstrap";
 
-const removePost = (props) => {
+function deletePostModal(props) {
     return (
         <Modal 
             show={props.show}
@@ -20,4 +20,4 @@ const removePost = (props) => {
     );
 };
 
-export default removePost;
+export default deletePostModal;

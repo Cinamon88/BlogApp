@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getPostById } from "../../redux/postsRedux";
+import { getPostById } from "../../../../redux/postsRedux";
 import { Button, Row, Col } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
  

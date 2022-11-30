@@ -2,6 +2,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 
 
+
 const AddPostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
   const [author, setAuthor] = useState(props.author || "");
@@ -56,7 +57,7 @@ const AddPostForm = ({ action, actionText, ...props }) => {
                   placeholder="Enter date"
                   required
                   onChange={(e) =>
-                    setPublishedDate((e.target.value, "yyyy-mm-dd"))
+                    setPublishedDate(e.target.value)
                   }
                   value={publishedDate}
                 />
@@ -69,7 +70,7 @@ const AddPostForm = ({ action, actionText, ...props }) => {
                 type="text"
                 as="textarea"
                 rows={3}
-                placeholder="Write here short description of your post."
+                placeholder="Short description of your post."
                 required
                 onChange={(e) => setShortDescription(e.target.value)}
                 value={shortDescription}
@@ -82,7 +83,7 @@ const AddPostForm = ({ action, actionText, ...props }) => {
                 type="text"
                 as="textarea"
                 rows={10}
-                placeholder="Add your blog post text here."
+                placeholder="Write your post here"
                 required
                 onChange={(e) => setContent(e.target.value)}
                 value={content}

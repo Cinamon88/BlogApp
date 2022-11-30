@@ -1,16 +1,14 @@
-import PostForm from "../PostForm/PostForm";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editPost, getPostById } from "../../redux/postsRedux";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import dateFormat from "dateformat";
 import { Navigate } from "react-router-dom";
+import PostForm from "./PostForm";
+import dateFormat from "dateformat";
 
 const EditPostForm = () => {
   const { id } = useParams();
-  console.log(id);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,10 +30,7 @@ const EditPostForm = () => {
         actionText={"Edit Post"}
         title={editedPostContent.title}
         author={editedPostContent.author}
-        publishedDate={dateFormat(
-          editedPostContent.publishedDate,
-          "yyyy-mm-dd"
-        )}
+        publishedDate={dateFormat(editedPostContent.publishedDate, "yyyy-mm-dd")}
         shortDescription={editedPostContent.shortDescription}
         content={editedPostContent.content}
         id={id}

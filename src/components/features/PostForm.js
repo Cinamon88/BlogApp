@@ -1,5 +1,6 @@
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
+import dateFormat from "dateformat";
 
 
  
@@ -56,7 +57,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                         type="date"
                         placeholder="Enter date"
                         required
-                        onChange={(e) => setPublishedDate(e.target.value)}
+                        onChange={(e) => setPublishedDate(dateFormat(e.target.value, "yyyy-mm-dd"))}
                         value={publishedDate}
                         />
                     </Form.Group>
@@ -68,7 +69,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                         type="text"
                         as="textarea"
                         rows={3}
-                        placeholder="Write here short description of your post."
+                        placeholder="Short description of your post."
                         required
                         onChange={(e) => setShortDescription(e.target.value)}
                         value={shortDescription}
@@ -81,7 +82,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                         type="text"
                         as="textarea"
                         rows={10}
-                        placeholder="Add your blog post text here."
+                        placeholder="Add your post here."
                         required
                         onChange={(e) => setContent(e.target.value)}
                         value={content}

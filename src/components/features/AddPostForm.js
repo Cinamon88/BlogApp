@@ -1,103 +1,19 @@
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../redux/postsRedux";
+import PostForm from "./PostForm/PostForm";
 
-
-
-const AddPostForm = ({ action, actionText, ...props }) => {
-  const [title, setTitle] = useState(props.title || "");
-  const [author, setAuthor] = useState(props.author || "");
-  const [publishedDate, setPublishedDate] = useState(props.publishedDate || "");
-  const [shortDescription, setShortDescription] = useState(
-    props.shortDescription || ""
-  );
-  const [content, setContent] = useState(props.content || "");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    action({ title, author, publishedDate, shortDescription, content });
+const AddPostForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleSubmit = post => {
+    dispatch(addPost(post));
+    navigate('/')
   };
 
   return (
-    <>
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={10}>
-          <h1>{actionText}</h1>
-        </Col>
-      </Row>
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={10}>
-          <Form onSubmit={handleSubmit}>
-            <Col md={6}>
-              <Form.Group className="mb-3" controlId="title">
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter title"
-                  required
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="author">
-                <Form.Label>Author</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter author"
-                  required
-                  onChange={(e) => setAuthor(e.target.value)}
-                  value={author}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="published">
-                <Form.Label>Published</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Enter date"
-                  required
-                  onChange={(e) =>
-                    setPublishedDate(e.target.value)
-                  }
-                  value={publishedDate}
-                />
-              </Form.Group>
-            </Col>
-
-            <Form.Group className="mb-3" controlId="description">
-              <Form.Label>Short Description</Form.Label>
-              <Form.Control
-                type="text"
-                as="textarea"
-                rows={3}
-                placeholder="Short description of your post."
-                required
-                onChange={(e) => setShortDescription(e.target.value)}
-                value={shortDescription}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="content">
-              <Form.Label>Main Content</Form.Label>
-              <Form.Control
-                type="text"
-                as="textarea"
-                rows={10}
-                placeholder="Write your post here"
-                required
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-              />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              {actionText}
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </>
-  );
+    <PostForm action={handleSubmit} actionText="Add post" />
+  )
 };
 
 export default AddPostForm;

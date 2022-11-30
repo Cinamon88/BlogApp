@@ -1,6 +1,6 @@
 # Published on Replit
 
-https://replit.com/@Cinamon88/BlogApp?v=1
+https://blogapp.cinamon88.repl.co/
 
 
 # Getting Started with Create React App

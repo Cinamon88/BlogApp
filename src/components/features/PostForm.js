@@ -1,6 +1,8 @@
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import dateFormat from "dateformat";
+import TextAreaQuill from "./TextAreaQuill";
+
 
 
  
@@ -77,17 +79,20 @@ const PostForm = ({ action, actionText, ...props }) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="content">
-                    <Form.Label>Main Content</Form.Label>
-                    <Form.Control
-                        type="text"
-                        as="textarea"
-                        rows={10}
-                        placeholder="Add your post here."
-                        required
-                        onChange={(e) => setContent(e.target.value)}
-                        value={content}
-                        />
+                      <Form.Label>Main Content</Form.Label>
+                      <TextAreaQuill>
+                        <Form.Control
+                            type="text"
+                            as="textarea"
+                            rows={10}
+                            placeholder="Add your post here."
+                            required
+                            onChange={(e) => setContent(e.target.value)}
+                            value={content}
+                            />
+                      </TextAreaQuill>
                     </Form.Group>
+                    
 
                     <Button variant="primary" type="submit">
                     {actionText}

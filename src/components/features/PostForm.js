@@ -2,7 +2,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import TextAreaQuill from "./TextAreaQuill";
-
+import { useForm } from "react-hook-form";
 import 'react-datepicker/dist/react-datepicker.css';
 
  
@@ -13,10 +13,10 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
   
+  const { register, handleSubmit: validate, formState: { errors } } = useForm();
   
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     action({ title, author, publishedDate, shortDescription, content });
     
   };
@@ -30,17 +30,17 @@ const PostForm = ({ action, actionText, ...props }) => {
         </Row>
         <Row className="justify-content-md-center">
             <Col xs={12} md={10}>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={validate(handleSubmit)}>
                     <Col md={6}>
-                    <Form.Group className="mb-3" controlId="title">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                        type="text"
-                        placeholder="Enter title"
-                        required
-                        onChange={(e) => setTitle(e.target.value)}
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control
+                        {...register("title", { required: true })}
                         value={title}
-                        />
+                        onChange={e => setTitle(e.target.value)}
+                        type="text" placeholder="Enter title"
+                      />
+                      {errors.title && <small className="d-block form-text text-danger mt-2">This field is required</small>}
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="author">

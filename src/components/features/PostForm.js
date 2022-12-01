@@ -3,8 +3,6 @@ import { useState } from "react";
 import dateFormat from "dateformat";
 import TextAreaQuill from "./TextAreaQuill";
 
-
-
  
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -93,7 +91,6 @@ const PostForm = ({ action, actionText, ...props }) => {
                       </TextAreaQuill>
                     </Form.Group>
                     
-
                     <Button variant="primary" type="submit">
                     {actionText}
                     </Button>

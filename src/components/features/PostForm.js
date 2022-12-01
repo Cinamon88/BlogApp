@@ -1,7 +1,9 @@
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState } from "react";
-import dateFormat from "dateformat";
+import DatePicker from "react-datepicker";
 import TextAreaQuill from "./TextAreaQuill";
+
+import 'react-datepicker/dist/react-datepicker.css';
 
  
 const PostForm = ({ action, actionText, ...props }) => {
@@ -10,6 +12,7 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
+  
   
 
   const handleSubmit = (e) => {
@@ -53,12 +56,9 @@ const PostForm = ({ action, actionText, ...props }) => {
 
                     <Form.Group className="mb-3" controlId="published">
                         <Form.Label>Published</Form.Label>
-                        <Form.Control
-                        type="date"
-                        placeholder="Enter date"
-                        required
-                        onChange={(e) => setPublishedDate(dateFormat(e.target.value, "yyyy-mm-dd"))}
-                        value={publishedDate}
+                        <DatePicker
+                        selected={publishedDate ? new Date(publishedDate) : new Date()}
+                        onChange={(date) => setPublishedDate(date)}
                         />
                     </Form.Group>
                     </Col>

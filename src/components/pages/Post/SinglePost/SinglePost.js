@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import DeletePostModal from '../../../features/DeletePostModal';
+import { dateToStr } from '../../../../utils/dateToStr';
 
  
 const SinglePost = () => {
@@ -52,7 +53,7 @@ const SinglePost = () => {
                             {postData.author}
                         </p>
                         <p>
-                            <b>Published:</b> {postData.publishedDate}
+                            <b>Published:</b> {dateToStr(postData.publishedDate)}
                         </p>
                         <p dangerouslySetInnerHTML={{ __html: postData.content }} />
                     </Col>

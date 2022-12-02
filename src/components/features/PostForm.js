@@ -35,7 +35,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Title</Form.Label>
                       <Form.Control
-                        {...register("title", { required: true })}
+                        {...register("title", { required: true, minLength: 3 })}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         type="text" placeholder="Enter title"
@@ -46,12 +46,12 @@ const PostForm = ({ action, actionText, ...props }) => {
                     <Form.Group className="mb-3" controlId="author">
                         <Form.Label>Author</Form.Label>
                         <Form.Control
-                        type="text"
-                        placeholder="Enter author"
-                        required
-                        onChange={(e) => setAuthor(e.target.value)}
-                        value={author}
+                          {...register("author", { required: true, minLength: 3 })}
+                          value={author}
+                          onChange={e => setAuthor(e.target.value)}
+                          type="text" placeholder="Enter author"
                         />
+                        {errors.author && <small className="d-block form-text text-danger mt-2">This field is required</small>}
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="published">
@@ -66,14 +66,12 @@ const PostForm = ({ action, actionText, ...props }) => {
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Short Description</Form.Label>
                         <Form.Control
-                        type="text"
-                        as="textarea"
-                        rows={3}
-                        placeholder="Short description of your post."
-                        required
-                        onChange={(e) => setShortDescription(e.target.value)}
+                        {...register("shortDescription", { required: true, minLength: 20 })}
                         value={shortDescription}
-                        />
+                        onChange={e => setShortDescription(e.target.value)}
+                        type="text" placeholder="Short description"
+                      />
+                      {errors.shortDescription && <small className="d-block form-text text-danger mt-2">This field is required. Min 20 letters. </small>}
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="content">

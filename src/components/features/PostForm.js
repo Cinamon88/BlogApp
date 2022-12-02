@@ -1,4 +1,4 @@
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, } from "react-bootstrap";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import ReactQuill from 'react-quill';
@@ -15,6 +15,7 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [ content, setContent ] = useState(props.content || '');
   const [ contentError, setContentError ] = useState(false);
   const [ dateError, setDateError ] = useState(false);
+  const [ category, setCategory ] = useState(props.category || '');
   
   const { register, handleSubmit: validate, formState: { errors } } = useForm();
   
@@ -23,7 +24,7 @@ const PostForm = ({ action, actionText, ...props }) => {
     setContentError(!content)
     setDateError(!publishedDate)
     if(content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+      action({ title, author, publishedDate, shortDescription, content, category });
    }
  };
 
@@ -64,6 +65,18 @@ const PostForm = ({ action, actionText, ...props }) => {
                 />
                 {dateError && <small className="d-block form-text text-danger mt-2">Please choose date.</small>}
               </Form.Group>
+
+              <Form.Group className="mb-3" controlId="category">
+                <Form.Label>Category</Form.Label>
+                <Form.Select
+                  {...register("category", { required: true })}
+                  as="select"
+                  placeholder="Please select category"
+                  value={category}
+                  onChange={e => setCategory(e.target.value)}
+                />
+                {errors.category && <small className="d-block form-text text-danger mt-2">Field is required.</small>}
+              </Form.Group>
             </Col>
 
             <Form.Group className="mb-3" controlId="description">
@@ -83,7 +96,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                 theme="snow"   
                 value={content} 
                 onChange={setContent}
-                placeholder="Type here" 
+                placeholder="Write your post here" 
               />
               {contentError && <small className="d-block form-text text-danger mt-2">Content can't be empty</small>}
             </Form.Group>

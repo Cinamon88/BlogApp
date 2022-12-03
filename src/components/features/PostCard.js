@@ -12,9 +12,7 @@ const PostCard = (props) => {
             <div><b>Published:</b> {dateToStr(props.date)}</div>
             <div><b>Category:</b> {props.category}</div>
           <Card.Text>
-            <div>
             <b>Short description:</b> {props.description}
-            </div>
           </Card.Text>
           <Link key={props.id} to={"/post/" + props.id}>
             <Button variant="primary">Read more</Button>

@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
+
 import { getCategories } from "../../../redux/categoriesRedux";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Categories = () => {
     const categories = useSelector(getCategories);

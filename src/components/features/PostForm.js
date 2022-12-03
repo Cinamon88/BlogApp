@@ -5,6 +5,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from "react-hook-form";
 import 'react-datepicker/dist/react-datepicker.css';
+import { useSelector } from "react-redux";
+import { getCategories } from "../../redux/categoriesRedux";
 
  
 const PostForm = ({ action, actionText, ...props }) => {
@@ -16,9 +18,9 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [ contentError, setContentError ] = useState(false);
   const [ dateError, setDateError ] = useState(false);
   const [ category, setCategory ] = useState(props.category || '');
-  
   const { register, handleSubmit: validate, formState: { errors } } = useForm();
-  
+
+  const categories = useSelector(getCategories);
 
   const handleSubmit = () => {
     setContentError(!content)
@@ -74,7 +76,9 @@ const PostForm = ({ action, actionText, ...props }) => {
                   placeholder="Please select category"
                   value={category}
                   onChange={e => setCategory(e.target.value)}
-                />
+                >
+                  {categories.map((category => (<option value={category}>{category}</option>)))}
+                </Form.Select>
                 {errors.category && <small className="d-block form-text text-danger mt-2">Field is required.</small>}
               </Form.Group>
             </Col>

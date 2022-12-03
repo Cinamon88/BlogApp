@@ -1,10 +1,26 @@
+import { useSelector } from "react-redux";
+import { getCategories } from "../../../redux/categoriesRedux";
+import { Button, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 const Categories = () => {
+    const categories = useSelector(getCategories);
+
     return (
-        <>
-            <div>
-                <h1>CATEGORIES</h1>
-            </div>
-        </>
+        <section>
+            <h1 className="mb=5">All categories</h1>
+            <Row xs={1} md={1} className="g-2 justify-content-md-center">
+                {categories.map((category) => (
+                    <Col key={category}>
+                        <Link to={'/categories/' + category}>
+                            <Button variant={'primary'} className="px-5">
+                                {category}
+                            </Button>
+                        </Link>
+                    </Col>
+                ))}
+            </Row>
+        </section>
     );
 };
 

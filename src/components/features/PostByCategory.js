@@ -2,12 +2,12 @@ import { Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getPostByCategory } from '../../redux/postsRedux';
-import PostContainer from './PostContainer';
+import PostCard from './PostCard';
 
 
 const PostByCategory = () => {
   const { postCategory } = useParams();
-  const posts = useSelector((state) => getPostByCategory(state, postCategory));
+  const posts = useSelector(getPostByCategory);
 
   if (posts.length === 0)
     return (
@@ -16,6 +16,7 @@ const PostByCategory = () => {
         <p>No posts in this category</p>
       </div>
     );
+
   return (
     <div>
       <Row xs={1} md={4} className="g-2">
@@ -24,10 +25,13 @@ const PostByCategory = () => {
         </Col>
       </Row>
       <Row xs={1} md={2} className="g-3 justify-content-md-center">
-        {posts.map((post) => (
-          <Col key={post.id}>
-            <PostContainer {...post} />
-          </Col>
+      {posts.map((post, index) => (
+          <div key={index}>
+            <PostCard
+              key={index}
+              id={post.id}
+              />
+          </div>
         ))}
       </Row>
     </div>

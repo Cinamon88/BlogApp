@@ -14,7 +14,7 @@ const Categories = () => {
                 {categories.map((category) => (
                     <Col key={category}>
                         <Link to={'/categories/' + category}>
-                            <Button variant={'primary'} className="px-5">
+                            <Button variant={'outline-secondary'} className="px-5 g-2">
                                 {category}
                             </Button>
                         </Link>

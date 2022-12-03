@@ -14,7 +14,7 @@ const EDIT_POST = createActionName("EDIT_POST");
 
 // action creators
 export const addPost = (payload) => ({ type: ADD_POST, payload });
-export const removePost = (payload) => ({ type: REMOVE_POST, payload});
+export const removePost = (id) => ({ type: REMOVE_POST, id});
 export const editPost = (payload) => ({ type: EDIT_POST, payload});
 
 const postsReducer = (statePart = [], action) => {

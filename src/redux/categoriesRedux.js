@@ -1,4 +1,4 @@
-export const getCategories = ({ categories }) => categories;
+export const getCategories = (({ categories }) => categories);
 
 const categoriesRedux = (statePart = [], action) => {
     switch (action.type) {

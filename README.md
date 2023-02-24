@@ -1,3 +1,13 @@
+# React Blog App #
+
+# Technolgies
+- HTML
+- JavaScript
+- React.js
+- React Router
+- Redux
+- yarn
+
 # Published on Replit
 
 https://blogapp.cinamon88.repl.co/
